@@ -4,7 +4,7 @@ import Data.List (foldl')
 
 main = do 
     args <- getArgs
-    putStrLn $ show $ result (read $ head args)
+    print $ result $ read $ head args
 
 intervals max = [source | source <- [2..max], even source]
 
