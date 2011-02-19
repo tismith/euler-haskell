@@ -1,6 +1,7 @@
 .PHONY: clean depends depend
 
 BINFILES = $(patsubst prob%.hs,prob%,$(wildcard prob*.hs))
+USES_PRIMES = prob7 prob41
 
 HC      = ghc
 HC_OPTS = -cpp $(EXTRA_HC_OPTS) 
@@ -14,6 +15,8 @@ all: $(BINFILES)
 
 prob%: prob%.o
 	$(HC) -o $@ $(HC_OPTS) $^
+
+$(USES_PRIMES): Primes.o
 
 # Standard suffix rules
 .o.hi:
@@ -33,12 +36,6 @@ prob%: prob%.o
 
 .hs-boot.o-boot:
 	$(HC) -c $< $(HC_OPTS)
-
-prob7: Primes.o  prob7.hs
-	ghc -o $@ prob7.hs Primes.o
-
-prob41: Primes.o  prob41.hs
-	ghc -o $@ prob41.hs Primes.o
 
 clean: 
 	-rm a.out *.hi *.hc *.o $(BINFILES)
