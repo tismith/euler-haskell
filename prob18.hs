@@ -1,15 +1,15 @@
 module Main where
 import System.Environment (getArgs)
 
-data Tree a = Branch a Tree Tree | Leaf a deriving (Show)
+data Tree a = Branch a (Tree a) (Tree a) | Leaf a deriving (Show)
 
 main:: IO ()
 main = do 
     f <- getArgs
     raw <- readFile (head f)
     let rawData = map (map (read::(String -> Int))) $ map (words) $ lines raw
-    --print rawData
+    print rawData
 
-buildTree:: [[a]] -> Tree a
+--buildTree:: [[a]] -> Tree a
 
     

@@ -4,11 +4,11 @@ import Data.List (delete)
 import Primes (primes)
 
 main = do 
-    -- print $ findMaxPandigital 0 primes
-    print $ head $ dropWhile ((<9) . length . show) primes
+    --print $ findMaxPandigital 0 primes
+    print $ head $ dropWhile ((<8) . length . show) primes
 
 findMaxPandigital currentMax (p:ps)
-    | length (show p) > 9 = currentMax
+    | length (show p) > 7 = currentMax
     | isPandigital p = findMaxPandigital p ps
     | otherwise = findMaxPandigital currentMax ps
 
