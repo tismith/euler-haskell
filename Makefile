@@ -1,7 +1,9 @@
 .PHONY: clean depends depend
 
 BINFILES = $(patsubst prob%.hs,prob%,$(wildcard prob*.hs))
-USES_PRIMES = prob7 prob41
+USES_PRIMES = prob7 prob41 testprimes
+
+BINFILES += testprimes
 
 HC      = ghc
 HC_OPTS = -cpp $(EXTRA_HC_OPTS) 
@@ -12,6 +14,9 @@ OBJS = $(patsubst %.hs,%.o,$(SRCS))
 .SUFFIXES : .o .hs .hi .lhs .hc .s
 
 all: $(BINFILES) 
+
+testprimes: testprimes.o
+	$(HC) -o $@ $(HC_OPTS) $^
 
 prob%: prob%.o
 	$(HC) -o $@ $(HC_OPTS) $^
